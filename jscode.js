@@ -394,7 +394,7 @@ function myFunction(x) {
         var dashspl = dsh.split("\t");
         var mo, eptitle, untoep;
         //language services view
-        mo = dashspl[8];
+        mo = dashspl[1];
         eptitle = dashspl[16];
         untoep = dashspl[16];
 
