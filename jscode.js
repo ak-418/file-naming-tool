@@ -195,7 +195,7 @@ function langchange(x) {
 
 
     if (mo == "")
-        eptitle = dash[11];
+        eptitle = dash[17];
 
     if (eptitle !== null)
         var z = eptitle.match(/\[[0-9A-Z]*[0-9]+\/*[0-9]*\]/);
@@ -401,9 +401,9 @@ function myFunction(x) {
 
         if (mo == "") {
             //operations schedule
-            mo = dashspl[9];
-            eptitle = dashspl[11];
-            untoep = dashspl[11];
+            mo = dashspl[8];
+            eptitle = dashspl[17];
+            untoep = dashspl[17];
         }
 
         if (mo == "") {
@@ -740,4 +740,3 @@ function myFunction(x) {
 
     return false;
 }
-
