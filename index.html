@@ -1,1663 +1,1716 @@
-<style>	.offscreen {    position: absolute;    left: -999em;}
+<style>
+	.offscreen {
+	  position: absolute;
+	  left: -999em;
+	}
+  
 	textarea:required {
-	overflow:hidden;
-    box-shadow: none;
-    resize: none;
-}
-</style>
-<textarea id = "hiddentxt" class = "offscreen"></textarea>
-<table cellpadding=2 cellspacing=4>	
-<tr>
-
-<th><button id = "manualbutton" onclick="manual()">Enter manually</button>
-<button onclick="dashNM()" id ="dashbutton" hidden>Dash entry</button>
-<!--<button  id="opbut" onclick = "opview()" >Operations view</button>
-<button id="lsvbut" onclick = "lsvview()" hidden>Language services view</button>-->
-</th>
-
-<th valign="bottom"><input type='checkbox' id='frchk' onchange="checkdframe()"><font size=2>Frame rate</font></input></th>
-<th valign="bottom"><input type='checkbox' id='langchk' onchange="checkdlang()"><font size=2>Language</font></input></th>
-<th valign="bottom"><input type='checkbox' id='epchk' onchange="checkdep()"><font size=2>Episode</font></input></th>
-<th valign="bottom"><input type='checkbox' id='typchk' onchange="checkdtyp()"><font size=2>File type</font></input></th><!-- used type as variable  -->
-<th valign="bottom"><input type='checkbox' id='miscchk' onchange="checkdmisc()"><font size=2>Proxy type</font></input></th>
-<th valign="bottom"><input type='checkbox' id='tskchk' onchange="checkdtask()"><font size=2>Task</font></input></th>	
-<th valign="bottom"><font size=2>Pending queries</font></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-<tr>
-<form id='f1'  name='form1' onsubmit='return myFunction("1");'>
-<td>
-<textarea id='dash1' rows = "1" cols = "22" placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "mlines('1');langchange('1');"></textarea>
-<input hidden  type = "number" min = "0" id='mo1' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt1' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en1' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea1' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-
-</td>
-
-	
-<td>	<select id='framerate1'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-<td>	<select name="LanguageCode" id="LanguageCode1">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-<td>	<input type = "number" min = "0" id='ep1' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-
-<td style="text-align:center">
-	<select id = 'typ1'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	</select>
-</td>
-
-<td>
-	<select id = 'misc1'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-
-
-<td>	<select id='ptype1'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-
-<td align = 'center'>
-<input type=checkbox id="pquer1">
-</td>
-	
-<td>	<input type=submit id ='but1'></input></td>
-<td><input type=text id='disp1' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("1")'>Copy</button>	</td>
-</form>
-
-</tr>
-
-<tr><form id='f2' name='form2' onsubmit='return myFunction("2");'>
-
-<td>	<input type = "text" id='dash2' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('2')"></input>
-<input hidden  type = "number" min = "0" id='mo2' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt2' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en2' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea2' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate2'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode2">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep2' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-
-<td style="text-align:center">
-	<select id = 'typ2'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-    		<option value = "CC">CC</option>
-
-	
-	</select>
-</td>
-	
-<td>
-	<select id = 'misc2'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>	
-	
-	<td>	<select id='ptype2'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-
-<td align = 'center'>
-<input type=checkbox id="pquer2">
-</td>
-
-	<td><input type=submit id ='but2'></input></td>
-<td><input type=text id='disp2' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("2")'>Copy</button></td>	
-</form></tr>
-
-<tr><form id='f3' name='form3' onsubmit='return myFunction("3");'>
-
-	<td>	<input type = "text" id='dash3' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('3')"></input>
-<input hidden  type = "number" min = "0" id='mo3' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt3' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en3' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea3' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate3'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode3">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep3' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ3'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc3'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype3'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-
-<td align = 'center'>
-<input type=checkbox id="pquer3">
-</td>
-	<td><input type=submit id ='but3'></input></td>
-<td><input type=text id='disp3' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("3")'>Copy</button></td>	
-</form></tr>
-
-<tr><form id='f4' name='form4' onsubmit='return myFunction("4");'>
-
-	<td>	<input type = "text" id='dash4' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('4')"></input>
-<input hidden  type = "number" min = "0" id='mo4' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt4' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en4' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea4' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate4'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode4">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep4' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ4'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc4'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype4'>
-
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>	
-
-<td align = 'center'>
-<input type=checkbox id="pquer4">
-</td>
-	<td><input type=submit id ='but4'></input></td>
-<td><input type=text id='disp4' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("4")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f5' name='form5' onsubmit='return myFunction("5");'>
-
-<td>	<input type = "text" id='dash5' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('5')"></input>
-<input hidden  type = "number" min = "0" id='mo5' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt5' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en5' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea5' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>	
-	
-	<td><select id='framerate5'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode5">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep5' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ5'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc5'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype5'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer5">
-</td>
-
-
-	<td><input type=submit id ='but5'></input></td>
-<td><input type=text id='disp5' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("5")'>Copy</button></td>	
-</form></tr>
-
-
-
-<tr><form id='f6' name='form6' onsubmit='return myFunction("6");'>
-	
-	<td>	<input type = "text" id='dash6' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('6')"></input>
-<input hidden  type = "number" min = "0" id='mo6' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt6' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en6' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea6' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate6'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode6">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep6' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-
-<td style="text-align:center">
-	<select id = 'typ6'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc6'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>	
-	
-	<td>	<select id='ptype6'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer6">
-</td>
-
-
-	<td><input type=submit id ='but6'></input></td>
-<td><input type=text id='disp6' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("6")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f7' name='form7' onsubmit='return myFunction("7");'>
-
-<td>	<input type = "text" id='dash7' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('7')"></input>
-<input hidden  type = "number" min = "0" id='mo7' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt7' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en7' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea7' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>	
-	
-	<td><select id='framerate7'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode7">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep7' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ7'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc7'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype7'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer7">
-</td>
-
-
-	<td><input type=submit id ='but7'></input></td>
-<td><input type=text id='disp7' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("7")'>Copy</button></td>	
-</form></tr>
-
-<tr><form id='f8' name='form8' onsubmit='return myFunction("8");'>
-
-	<td>	<input type = "text" id='dash8' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('8')"></input>
-<input hidden  type = "number" min = "0" id='mo8' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt8' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en8' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea8' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate8'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode8">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep8' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ8'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc8'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-
-	<td>	<select id='ptype8'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer8">
-</td>
-
-
-	<td><input type=submit id ='but8'></input></td>
-<td><input type=text id='disp8' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("8")'>Copy</button></td>	
-</form></tr>
-
-
-
-<tr><form id='f9' name='form9' onsubmit='return myFunction("9");'>
-
-	<td>	<input type = "text" id='dash9' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('9')"></input>
-<input hidden  type = "number" min = "0" id='mo9' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt9' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en9' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea9' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate9'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode9">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep9' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ9'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc9'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype9'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer9">
-</td>
-
-
-	<td><input type=submit id ='but9'></input></td>
-<td><input type=text id='disp9' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("9")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f10' name='form10' onsubmit='return myFunction("10");'>
-	
-	<td>	<input type = "text" id='dash10' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('10')"></input>
-<input hidden  type = "number" min = "0" id='mo10' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt10' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en10' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea10' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate10'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode10">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-
-
-
-	
-	
-	<td><input type = "number" min = "0" id='ep10' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ10'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc10'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype10'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer10">
-</td>
-
-
-	<td><input type=submit id ='but10'></input></td>
-<td><input type=text id='disp10' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("10")'>Copy</button></td>	
-</form></tr>
-
-
-
-<tr><form id='f11' name='form11' onsubmit='return myFunction("11");'>
-
-	<td>	<input type = "text" id='dash11' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('11')"></input>
-<input hidden  type = "number" min = "0" id='mo11' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt11' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en11' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea11' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate11'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode11">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep11' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ11'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-        <option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-        
-	
-	</select>
-</td>
-<td>
-	<select id = 'misc11'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>	
-	
-	<td>	<select id='ptype11'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer11">
-</td>
-
-
-	<td><input type=submit id ='but11'></input></td>
-<td><input type=text id='disp11' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("11")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f12' name='form12' onsubmit='return myFunction("12");'>
-	<td>	<input type = "text" id='dash12' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('12')"></input>
-<input hidden  type = "number" min = "0" id='mo12' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt12' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en12' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea12' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate12'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode12">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep12' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ12'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-	<td>
-	<select id = 'misc12'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-				<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype12'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer12">
-</td>
-
-
-	
-	<td><input type=submit id ='but12'></input></td>
-<td><input type=text id='disp12' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("12")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f13' name='form13' onsubmit='return myFunction("13");'>
-	<td>	<input type = "text" id='dash13' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('13')"></input>
-<input hidden  type = "number" min = "0" id='mo13' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt13' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en13' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea13' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	<td><select id='framerate13'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode13">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep13' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ13'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-	<td>
-	<select id = 'misc13'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype13'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer13">
-</td>
-
-
-	<td><input type=submit id ='but13'></input></td>
-<td><input type=text id='disp13' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("13")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f14' name='form14' onsubmit='return myFunction("14");'>
-
-	<td>	<input type = "text" id='dash14' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('14')"></input>
-<input hidden  type = "number" min = "0" id='mo14' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt14' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en14' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea14' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	
-	<td><select id='framerate14'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode14">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep14' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-<td style="text-align:center">
-	<select id = 'typ14'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-	
-	<td>
-	<select id = 'misc14'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype14'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer14">
-</td>
-
-
-	<td><input type=submit id ='but14'></input></td>
-<td><input type=text id='disp14' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("14")'>Copy</button></td>	
-</form></tr>
-
-
-<tr><form id='f15' name='form15' onsubmit='return myFunction("15");'>
-	<td>	<input type = "text" id='dash15' placeholder="Dash record"  autocomplete = "off" autocomplete = "off"required onchange = "langchange('15')"></input>
-<input hidden  type = "number" min = "0" id='mo15' placeholder="MO#"  autocomplete = "off" style = "width:7em"></input>
-<input  hidden type = "text" id='mt15' placeholder="Main title"></input>
-<input  hidden  type = "text" id='en15' placeholder="Episode name"></input>
-<input hidden type = "number" min = "0" id='sea15' placeholder="Season#"  autocomplete = "off"style = "width:5em"></input>
-</td>
-	<td><select id='framerate15'>
-	<option value="" disabled selected hidden>Frame Rate</option>
-		<option value='2398'>2398</option>
-		<option value='2400'>2400</option>
-		<option value='2500'>2500</option>
-		<option value='2997DF'>2997DF</option>
-		<option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
-	</select></td>
-	
-	<td><select name="LanguageCode" id="LanguageCode15">
-		<option value="" disabled selected hidden>Language</option>
-		<option value='ar'>Arabic</option>
-		<option value='bg'>Bulgarian</option>
-		<option value='my'>Burmese</option>
-		<option value='zh-Hans'>Chinese Simplified</option>
-		<option value='zh-Hant'>Chinese Traditional</option>
-		<option value='hr'>Croatian</option>
-		<option value='cs'>Czech</option>
-		<option value='da'>Danish</option>
-		<option value='nl'>Dutch</option>
-		<option value='en'>English</option>
-		<option value='en-GB'>English (UK)</option>
-		<option value='fi'>Finnish</option>
-		<option value='fr'>French [Parisian/Euro]</option>
-		<option value='fr-CA'>French [Canadian/Quebecois]</option>
-		<option value='de'>German</option>
-		<option value='el'>Greek</option>
-		<option value='he'>Hebrew</option>
-		<option value='hi'>Hindi</option>
-		<option value='hu'>Hungarian</option>
-		<option value='id'>Indonesian</option>
-		<option value='it'>Italian</option>
-		<option value='ja'>Japanese</option>
-		<option value='ko'>Korean</option>
-		<option value='lv'>Latvian</option>
-		<option value='ms'>Malay</option>
-		<option value='nb'>Norwegian</option>
-		<option value='nn'>Norwegian Nynorsk</option>
-		<option value='nb'>Norwegian Bokmal</option>
-		<option value='pl'>Polish</option>
-		<option value='pt-BR'>Portuguese Brazilian</option>
-		<option value='pt'>Portuguese European</option>
-		<option value='ro'>Romanian</option>
-		<option value='ru'>Russian</option>
-		<option value='sr'>Serbian</option>
-		<option value='sk'>Slovak</option>
-		<option value='es-ES'>Spanish Castilian</option>
-		<option value='es'>Spanish Latin American</option>
-		<option value='sv'>Swedish</option>
-		<option value='tl'>Tagalog</option>
-		<option value='th'>Thai</option>
-		<option value='tr'>Turkish</option>
-		<option value='uk'>Ukrainian</option>
-		<option value='vi'>Vietnamese</option>
-</select></td>
-	
-	
-	<td><input type = "number" min = "0" id='ep15' placeholder='Episode#'  autocomplete = "off" size ='15'></input></td>
-	
-<td style="text-align:center">
-	<select id = 'typ15'>
-		<option value = "" disabled selected hidden>Type</option>
-		<option value = "sub">Sub</option>
-		<option value = "temp">Temp</option>
-		<option value = "SDH">SDH</option>
-		<option value = "FN">FN</option>
-		<option value = "CC">CC</option>
-	
-	</select>
-</td>
-	<td>
-	<select id = 'misc15'>
-		<option value = "" disabled selected hidden>Proxy type</option>
-		<option value = "TXT">Texted</option>
-		<option value = "TXTLS">Textless</option>
-		<option value = "SEMITXT">Semi-texted</option>
-	
-	</select>
-</td>
-	<td>	<select id='ptype15'>
-<option value="" disabled selected hidden>Task</option>
- <option value="Orig">Orig</option>
-<option value="QC1">QC1</option>
- <option value="QC2">QC2</option>
- <option value="QCF">QCF</option>
- <option value="ConF">ConF</option>
-
-</select> </td>
-<td align = 'center'>
-<input type=checkbox id="pquer15">
-</td>
-
-
-	<td><input type=submit id ='but15'></input></td>
-<td><input type=text id='disp15' placeholder='File name' size="50" ></input></td>
-<td><button type="button" onclick = 'funcopy("15")'>Copy</button></td>	
-</form></tr>
-
-
-
-
-<!--<button onclick='createform()'>Add field</button>! for creating dynamic stuff-->
-</table>
-
-<br>
-<br>
-<button onclick = 'submitforms()'>Submit All</button>	
-<button type="button" onclick = 'copyall()'>Copy All</button>	
+	  overflow: hidden;
+	  box-shadow: none;
+	  resize: none;
+	}
+  </style>
+  <textarea id="hiddentxt" class="offscreen"></textarea>
+  <table cellpadding=2 cellspacing=4>
+	<tr>
+  
+	  <th><button id="manualbutton" onclick="manual()">Enter manually</button>
+		<button onclick="dashNM()" id="dashbutton" hidden>Dash entry</button>
+		<!--<button  id="opbut" onclick = "opview()" >Operations view</button>
+  <button id="lsvbut" onclick = "lsvview()" hidden>Language services view</button>-->
+	  </th>
+  
+	  <th valign="bottom"><input type='checkbox' id='frchk' onchange="checkdframe()">
+		<font size=2>Frame rate</font>
+		</input>
+	  </th>
+	  <th valign="bottom"><input type='checkbox' id='langchk' onchange="checkdlang()">
+		<font size=2>Language</font>
+		</input>
+	  </th>
+	  <th valign="bottom"><input type='checkbox' id='epchk' onchange="checkdep()">
+		<font size=2>Episode</font>
+		</input>
+	  </th>
+	  <th valign="bottom"><input type='checkbox' id='typchk' onchange="checkdtyp()">
+		<font size=2>File type</font>
+		</input>
+	  </th>
+	  <!-- used type as variable  -->
+	  <th valign="bottom"><input type='checkbox' id='miscchk' onchange="checkdmisc()">
+		<font size=2>Proxy type</font>
+		</input>
+	  </th>
+	  <th valign="bottom"><input type='checkbox' id='tskchk' onchange="checkdtask()">
+		<font size=2>Task</font>
+		</input>
+	  </th>
+	  <th valign="bottom">
+		<font size=2>Pending queries</font>
+	  </th>
+	  <th></th>
+	  <th></th>
+	  <th></th>
+	</tr>
+	<tr>
+	  <form id='f1' name='form1' onsubmit='return myFunction("1");'>
+		<td>
+		  <textarea id='dash1' rows="1" cols="22" placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="mlines('1');langchange('1');"></textarea>
+		  <input hidden type="number" min="0" id='mo1' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt1' placeholder="Main title"></input>
+		  <input hidden type="text" id='en1' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea1' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+  
+		</td>
+  
+		<td> <select id='framerate1'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td> <select name="LanguageCode" id="LanguageCode1">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td> <input type="number" min="0" id='ep1' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+  
+		<td style="text-align:center">
+		  <select id='typ1'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  </select>
+		</td>
+  
+		<td>
+		  <select id='misc1'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+  
+		<td> <select id='ptype1'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+  
+		<td align='center'>
+		  <input type=checkbox id="pquer1">
+		</td>
+  
+		<td> <input type=submit id='but1'></input>
+		</td>
+		<td><input type=text id='disp1' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("1")'>Copy</button> </td>
+	  </form>
+  
+	</tr>
+  
+	<tr>
+	  <form id='f2' name='form2' onsubmit='return myFunction("2");'>
+  
+		<td> <input type="text" id='dash2' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('2')"></input>
+		  <input hidden type="number" min="0" id='mo2' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt2' placeholder="Main title"></input>
+		  <input hidden type="text" id='en2' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea2' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate2'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option>
+		  <option value='59DF'>59DF</option>
+		  <option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode2">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep2' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+  
+		<td style="text-align:center">
+		  <select id='typ2'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+			  <option value = "CC">CC</option>
+  
+	  
+	  </select>
+		</td>
+  
+		<td>
+		  <select id='misc2'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+  
+		<td> <select id='ptype2'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+  
+		<td align='center'>
+		  <input type=checkbox id="pquer2">
+		</td>
+  
+		<td><input type=submit id='but2'></input>
+		</td>
+		<td><input type=text id='disp2' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("2")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f3' name='form3' onsubmit='return myFunction("3");'>
+  
+		<td> <input type="text" id='dash3' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('3')"></input>
+		  <input hidden type="number" min="0" id='mo3' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt3' placeholder="Main title"></input>
+		  <input hidden type="text" id='en3' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea3' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate3'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode3">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep3' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ3'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc3'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype3'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+  
+		<td align='center'>
+		  <input type=checkbox id="pquer3">
+		</td>
+		<td><input type=submit id='but3'></input>
+		</td>
+		<td><input type=text id='disp3' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("3")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f4' name='form4' onsubmit='return myFunction("4");'>
+  
+		<td> <input type="text" id='dash4' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('4')"></input>
+		  <input hidden type="number" min="0" id='mo4' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt4' placeholder="Main title"></input>
+		  <input hidden type="text" id='en4' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea4' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate4'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode4">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep4' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ4'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc4'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype4'>
+  
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+  
+		<td align='center'>
+		  <input type=checkbox id="pquer4">
+		</td>
+		<td><input type=submit id='but4'></input>
+		</td>
+		<td><input type=text id='disp4' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("4")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f5' name='form5' onsubmit='return myFunction("5");'>
+  
+		<td> <input type="text" id='dash5' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('5')"></input>
+		  <input hidden type="number" min="0" id='mo5' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt5' placeholder="Main title"></input>
+		  <input hidden type="text" id='en5' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea5' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate5'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode5">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep5' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ5'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc5'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype5'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer5">
+		</td>
+  
+		<td><input type=submit id='but5'></input>
+		</td>
+		<td><input type=text id='disp5' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("5")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f6' name='form6' onsubmit='return myFunction("6");'>
+  
+		<td> <input type="text" id='dash6' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('6')"></input>
+		  <input hidden type="number" min="0" id='mo6' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt6' placeholder="Main title"></input>
+		  <input hidden type="text" id='en6' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea6' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate6'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode6">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep6' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+  
+		<td style="text-align:center">
+		  <select id='typ6'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc6'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+  
+		<td> <select id='ptype6'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer6">
+		</td>
+  
+		<td><input type=submit id='but6'></input>
+		</td>
+		<td><input type=text id='disp6' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("6")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f7' name='form7' onsubmit='return myFunction("7");'>
+  
+		<td> <input type="text" id='dash7' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('7')"></input>
+		  <input hidden type="number" min="0" id='mo7' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt7' placeholder="Main title"></input>
+		  <input hidden type="text" id='en7' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea7' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate7'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode7">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep7' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ7'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc7'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype7'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer7">
+		</td>
+  
+		<td><input type=submit id='but7'></input>
+		</td>
+		<td><input type=text id='disp7' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("7")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f8' name='form8' onsubmit='return myFunction("8");'>
+  
+		<td> <input type="text" id='dash8' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('8')"></input>
+		  <input hidden type="number" min="0" id='mo8' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt8' placeholder="Main title"></input>
+		  <input hidden type="text" id='en8' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea8' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate8'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode8">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep8' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ8'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc8'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+  
+		<td> <select id='ptype8'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer8">
+		</td>
+  
+		<td><input type=submit id='but8'></input>
+		</td>
+		<td><input type=text id='disp8' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("8")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f9' name='form9' onsubmit='return myFunction("9");'>
+  
+		<td> <input type="text" id='dash9' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('9')"></input>
+		  <input hidden type="number" min="0" id='mo9' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt9' placeholder="Main title"></input>
+		  <input hidden type="text" id='en9' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea9' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate9'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode9">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep9' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ9'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc9'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype9'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer9">
+		</td>
+  
+		<td><input type=submit id='but9'></input>
+		</td>
+		<td><input type=text id='disp9' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("9")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f10' name='form10' onsubmit='return myFunction("10");'>
+  
+		<td> <input type="text" id='dash10' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('10')"></input>
+		  <input hidden type="number" min="0" id='mo10' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt10' placeholder="Main title"></input>
+		  <input hidden type="text" id='en10' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea10' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate10'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode10">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep10' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ10'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc10'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype10'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer10">
+		</td>
+  
+		<td><input type=submit id='but10'></input>
+		</td>
+		<td><input type=text id='disp10' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("10")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f11' name='form11' onsubmit='return myFunction("11");'>
+  
+		<td> <input type="text" id='dash11' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('11')"></input>
+		  <input hidden type="number" min="0" id='mo11' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt11' placeholder="Main title"></input>
+		  <input hidden type="text" id='en11' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea11' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate11'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode11">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep11' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ11'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+		  
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc11'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+  
+		<td> <select id='ptype11'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer11">
+		</td>
+  
+		<td><input type=submit id='but11'></input>
+		</td>
+		<td><input type=text id='disp11' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("11")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f12' name='form12' onsubmit='return myFunction("12");'>
+		<td> <input type="text" id='dash12' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('12')"></input>
+		  <input hidden type="number" min="0" id='mo12' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt12' placeholder="Main title"></input>
+		  <input hidden type="text" id='en12' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea12' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate12'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode12">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep12' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ12'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc12'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+				  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype12'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer12">
+		</td>
+  
+		<td><input type=submit id='but12'></input>
+		</td>
+		<td><input type=text id='disp12' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("12")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f13' name='form13' onsubmit='return myFunction("13");'>
+		<td> <input type="text" id='dash13' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('13')"></input>
+		  <input hidden type="number" min="0" id='mo13' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt13' placeholder="Main title"></input>
+		  <input hidden type="text" id='en13' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea13' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+		<td><select id='framerate13'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode13">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep13' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ13'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc13'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype13'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer13">
+		</td>
+  
+		<td><input type=submit id='but13'></input>
+		</td>
+		<td><input type=text id='disp13' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("13")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f14' name='form14' onsubmit='return myFunction("14");'>
+  
+		<td> <input type="text" id='dash14' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('14')"></input>
+		  <input hidden type="number" min="0" id='mo14' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt14' placeholder="Main title"></input>
+		  <input hidden type="text" id='en14' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea14' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+  
+		<td><select id='framerate14'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode14">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep14' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+		<td style="text-align:center">
+		  <select id='typ14'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+  
+		<td>
+		  <select id='misc14'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype14'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer14">
+		</td>
+  
+		<td><input type=submit id='but14'></input>
+		</td>
+		<td><input type=text id='disp14' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("14")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<tr>
+	  <form id='f15' name='form15' onsubmit='return myFunction("15");'>
+		<td> <input type="text" id='dash15' placeholder="Dash record" autocomplete="off" autocomplete="off" required onchange="langchange('15')"></input>
+		  <input hidden type="number" min="0" id='mo15' placeholder="MO#" autocomplete="off" style="width:7em"></input>
+		  <input hidden type="text" id='mt15' placeholder="Main title"></input>
+		  <input hidden type="text" id='en15' placeholder="Episode name"></input>
+		  <input hidden type="number" min="0" id='sea15' placeholder="Season#" autocomplete="off" style="width:5em"></input>
+		</td>
+		<td><select id='framerate15'>
+	  <option value="" disabled selected hidden>Frame Rate</option>
+		  <option value='2398'>2398</option>
+		  <option value='2400'>2400</option>
+		  <option value='2500'>2500</option>
+		  <option value='2997DF'>2997DF</option>
+		  <option value='2997NDF'>2997NDF</option><option value='59DF'>59DF</option><option value='59NDF'>59NDF</option>
+	  </select></td>
+  
+		<td><select name="LanguageCode" id="LanguageCode15">
+		  <option value="" disabled selected hidden>Language</option>
+		  <option value='ar'>Arabic</option>
+		  <option value='bg'>Bulgarian</option>
+		  <option value='my'>Burmese</option>
+		  <option value='zh-Hans'>Chinese Simplified</option>
+		  <option value='zh-Hant'>Chinese Traditional</option>
+		  <option value='hr'>Croatian</option>
+		  <option value='cs'>Czech</option>
+		  <option value='da'>Danish</option>
+		  <option value='nl'>Dutch</option>
+		  <option value='en'>English</option>
+		  <option value='en-GB'>English (UK)</option>
+		  <option value='fi'>Finnish</option>
+		  <option value='fr'>French [Parisian/Euro]</option>
+		  <option value='fr-CA'>French [Canadian/Quebecois]</option>
+		  <option value='de'>German</option>
+		  <option value='el'>Greek</option>
+		  <option value='he'>Hebrew</option>
+		  <option value='hi'>Hindi</option>
+		  <option value='hu'>Hungarian</option>
+		  <option value='id'>Indonesian</option>
+		  <option value='it'>Italian</option>
+		  <option value='ja'>Japanese</option>
+		  <option value='ko'>Korean</option>
+		  <option value='lv'>Latvian</option>
+		  <option value='ms'>Malay</option>
+		  <option value='nb'>Norwegian</option>
+		  <option value='nn'>Norwegian Nynorsk</option>
+		  <option value='nb'>Norwegian Bokmal</option>
+		  <option value='pl'>Polish</option>
+		  <option value='pt-BR'>Portuguese Brazilian</option>
+		  <option value='pt'>Portuguese European</option>
+		  <option value='ro'>Romanian</option>
+		  <option value='ru'>Russian</option>
+		  <option value='sr'>Serbian</option>
+		  <option value='sk'>Slovak</option>
+		  <option value='es-ES'>Spanish Castilian</option>
+		  <option value='es'>Spanish Latin American</option>
+		  <option value='sv'>Swedish</option>
+		  <option value='tl'>Tagalog</option>
+		  <option value='th'>Thai</option>
+		  <option value='tr'>Turkish</option>
+		  <option value='uk'>Ukrainian</option>
+		  <option value='vi'>Vietnamese</option>
+  </select></td>
+  
+		<td><input type="number" min="0" id='ep15' placeholder='Episode#' autocomplete="off" size='15'></input>
+		</td>
+  
+		<td style="text-align:center">
+		  <select id='typ15'>
+		  <option value = "" disabled selected hidden>Type</option>
+		  <option value = "sub">Sub</option>
+		  <option value = "temp">Temp</option>
+		  <option value = "SDH">SDH</option>
+		  <option value = "FN">FN</option>
+		  <option value = "CC">CC</option>
+	  
+	  </select>
+		</td>
+		<td>
+		  <select id='misc15'>
+		  <option value = "" disabled selected hidden>Proxy type</option>
+		  <option value = "TXT">Texted</option>
+		  <option value = "TXTLS">Textless</option>
+		  <option value = "SEMITXT">Semi-texted</option>
+	  
+	  </select>
+		</td>
+		<td> <select id='ptype15'>
+  <option value="" disabled selected hidden>Task</option>
+   <option value="Orig">Orig</option>
+  <option value="QC1">QC1</option>
+   <option value="QC2">QC2</option>
+   <option value="QCF">QCF</option>
+   <option value="ConF">ConF</option>
+  
+  </select> </td>
+		<td align='center'>
+		  <input type=checkbox id="pquer15">
+		</td>
+  
+		<td><input type=submit id='but15'></input>
+		</td>
+		<td><input type=text id='disp15' placeholder='File name' size="50"></input>
+		</td>
+		<td><button type="button" onclick='funcopy("15")'>Copy</button></td>
+	  </form>
+	</tr>
+  
+	<!--<button onclick='createform()'>Add field</button>! for creating dynamic stuff-->
+  </table>
+  
+  <br>
+  <br>
+  <button onclick='submitforms()'>Submit All</button>
+  <button type="button" onclick='copyall()'>Copy All</button>
