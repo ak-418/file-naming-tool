@@ -352,16 +352,16 @@ function myFunction(x) {
     var mo, eptitle, untoep;
     //language services view
     mo = dashspl[1];
-    eptitle = dashspl[16];
-    untoep = dashspl[16];
+    eptitle = dashspl[21];
+    untoep = dashspl[21];
 
-    if (mo == "") {
+    if (RegExp("[^0-9 ]").test(mo)) {
       //operations schedule
-      mo = dashspl[8];
-      eptitle = dashspl[17];
-      untoep = dashspl[17];
+      mo = dashspl[7];
+      eptitle = dashspl[15];
+      untoep = dashspl[15];
     }
-
+    
     if (mo == "") {
       alert("Something's not right!");
     }
